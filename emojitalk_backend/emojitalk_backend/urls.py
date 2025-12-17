@@ -1,10 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
-from contact.views import home 
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/contact/', include('contact.urls')),  # <- your contact API
+
+    # Backend APIs
+    path('api/contact/', include('contact.urls')),
     path('api/', include('users.urls')),
-    path('', home),
+
+    # React frontend
+    path('', TemplateView.as_view(template_name="index.html")),
 ]
